@@ -1,13 +1,13 @@
 package com.example.appvesto.presenter
 
 import androidx.lifecycle.MutableLiveData
-import com.example.appvesto.contract.FirebaseInterface
+import com.example.appvesto.contract.AppleFirebaseInterface
 import com.example.appvesto.model.models.FirebaseModelImpl
-import com.example.appvesto.model.objects.Data
+import com.example.appvesto.Data
 
-class FirebasePresenterImpl (_view: FirebaseInterface.FirebaseView): FirebaseInterface.FirebasePresenter {
+class FirebasePresenterImpl (_view: AppleFirebaseInterface.AppleFirebaseView): AppleFirebaseInterface.AppleFirebasePresenter {
 
-    var firebaseInterface: FirebaseInterface.FirebaseView = _view
+    var firebaseInterface: AppleFirebaseInterface.AppleFirebaseView = _view
     var model: FirebaseModelImpl = FirebaseModelImpl()
 
     init {

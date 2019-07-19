@@ -2,16 +2,16 @@ package com.example.appvesto.model.models
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.appvesto.constants.Constants
-import com.example.appvesto.contract.AppleInterface
-import com.example.appvesto.model.objects.Data
+import com.example.appvesto.Type
+import com.example.appvesto.contract.AppleFirebaseInterface
+import com.example.appvesto.Data
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class AppleModelImpl : AppleInterface.AppleModel {
+class AppleModelImpl : AppleFirebaseInterface.AppleFirebaseModel {
 
     private var url = " https://apple.com"
     private var liveData: MutableLiveData<ArrayList<Data>> = MutableLiveData()
@@ -38,7 +38,7 @@ class AppleModelImpl : AppleInterface.AppleModel {
         val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
         val elements: Elements? = document
             ?.select("a")
-        if (elements != null) {
+        elements?.let {
             for (i: Int in 0 until elements.size) {
                 val header: String? = elements.eq(i)
                     .text()
@@ -46,7 +46,7 @@ class AppleModelImpl : AppleInterface.AppleModel {
                     .attr("href")
                 Log.i("model_header", link)
                 if (link != null && header !=null) {
-                    dataArray.add(Data(Constants.APPLE, header, link))
+                    dataArray.add(Data(Type.APPLE.toInt(), header, url + link))
                 }
             }
             if (dataArray.size != 0) {

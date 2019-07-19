@@ -1,11 +1,11 @@
 package com.example.appvesto.contract
 
 import androidx.lifecycle.MutableLiveData
-import com.example.appvesto.model.objects.Data
+import com.example.appvesto.Data
 
-interface FirebaseInterface {
+interface AppleFirebaseInterface {
 
-    interface FirebaseView {
+    interface AppleFirebaseView {
 
         fun initRecycler()
         fun initListener()
@@ -13,7 +13,7 @@ interface FirebaseInterface {
 
     }
 
-    interface FirebasePresenter {
+    interface AppleFirebasePresenter {
 
         fun receiveData()
         fun getData(): MutableLiveData<ArrayList<Data>>
@@ -21,7 +21,7 @@ interface FirebaseInterface {
 
     }
 
-    interface FirebaseModel {
+    interface AppleFirebaseModel {
 
         fun receiveData()
         fun getData(): MutableLiveData<ArrayList<Data>>

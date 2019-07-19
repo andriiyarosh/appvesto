@@ -2,16 +2,16 @@ package com.example.appvesto.model.models
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.appvesto.constants.Constants
-import com.example.appvesto.contract.FirebaseInterface
-import com.example.appvesto.model.objects.Data
+import com.example.appvesto.Type
+import com.example.appvesto.contract.AppleFirebaseInterface
+import com.example.appvesto.Data
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class FirebaseModelImpl: FirebaseInterface.FirebaseModel {
+class FirebaseModelImpl: AppleFirebaseInterface.AppleFirebaseModel {
 
     private var url = "https://firebase.google.com/products/#develop-products"
     private var data: MutableLiveData<ArrayList<Data>> = MutableLiveData()
@@ -38,7 +38,7 @@ class FirebaseModelImpl: FirebaseInterface.FirebaseModel {
         val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
         val elements: Elements? = document
             ?.select("header[class=card__header]")
-        if (elements != null) {
+        elements?.let {
             for (i: Int in 0 until elements.size) {
                 val link: String? = document
                     .select("h2")
@@ -46,7 +46,7 @@ class FirebaseModelImpl: FirebaseInterface.FirebaseModel {
                     ?.text()
                 Log.i("model_header", link)
                 if(link != null) {
-                    dataArray.add(Data(Constants.FIREBASE, link, " "))
+                    dataArray.add(Data(Type.FIREBASE.toInt(), link, " "))
                 }
             }
             if (dataArray.size != 0) {

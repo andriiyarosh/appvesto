@@ -1,6 +1,5 @@
 package com.example.appvesto.contract
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 interface FlutterInterface {

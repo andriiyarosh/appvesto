@@ -1,4 +1,4 @@
-package com.example.appvesto.view.viewholder
+package com.example.appvesto.view
 
 import android.util.Log
 import android.view.View

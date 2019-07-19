@@ -36,7 +36,7 @@ class FlutterModelImpl : FlutterInterface.FlutterModel {
         val element: Elements? = document
             ?.select("div[class=site-banner site-banner--default]")
         val title: String? = element?.select("a")?.eq(0)?.text()
-        if (title != null) {
+        title?.let {
             val words = title.split(" ")
             for (s in words) {
                 try {
