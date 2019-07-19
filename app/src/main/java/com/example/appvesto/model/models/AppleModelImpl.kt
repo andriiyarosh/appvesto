@@ -23,30 +23,35 @@ class AppleModelImpl : AppleInterface.AppleModel {
         GlobalScope.launch {
 
             try {
-
-                val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
-                val elements: Elements? = document
-                    ?.select("a")
-                if (elements != null) {
-                    for (i: Int in 0 until elements.size) {
-                        val header: String? = elements.eq(i)
-                            .text()
-                        val link: String? = elements.eq(i)
-                            .attr("href")
-                        Log.i("model_header", link)
-                        if (link != null && header !=null) {
-                            dataArray.add(Data(Constants.APPLE, header, link))
-                        }
-                    }
-                    if (dataArray.size != 0) {
-                        liveData.postValue(dataArray)
-                    }
-                }
+                parseWebpage()
                 Log.i("model_header", "___")
 
             } catch (e: IOException) {
             }
 
+        }
+
+    }
+
+    private fun parseWebpage() {
+
+        val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
+        val elements: Elements? = document
+            ?.select("a")
+        if (elements != null) {
+            for (i: Int in 0 until elements.size) {
+                val header: String? = elements.eq(i)
+                    .text()
+                val link: String? = elements.eq(i)
+                    .attr("href")
+                Log.i("model_header", link)
+                if (link != null && header !=null) {
+                    dataArray.add(Data(Constants.APPLE, header, link))
+                }
+            }
+            if (dataArray.size != 0) {
+                liveData.postValue(dataArray)
+            }
         }
 
     }

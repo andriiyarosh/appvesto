@@ -13,7 +13,6 @@ import com.example.appvesto.model.objects.Data
 import com.example.appvesto.presenter.ApplePresenterImpl
 import com.example.appvesto.view.adapter.Adapter
 import kotlinx.android.synthetic.main.fragment_apple.*
-import kotlinx.android.synthetic.main.fragment_firebase.*
 
 class AppleFragment : Fragment(), AppleInterface.AppleView {
 
@@ -22,8 +21,7 @@ class AppleFragment : Fragment(), AppleInterface.AppleView {
     private lateinit var adapter: Adapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_apple, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_apple, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

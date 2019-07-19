@@ -22,26 +22,30 @@ class FlutterModelImpl : FlutterInterface.FlutterModel {
 
             try {
 
-                val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
-                val element: Elements? = document
-                    ?.select("div[class=site-banner site-banner--default]")
-                val title: String? = element?.select("a")?.eq(0)?.text()
-                if (title != null) {
-                    val words = title.split(" ")
-                    for (s in words) {
-                        try {
-//                            version = s.toDouble()
-//                            version.value = s.toDouble()
-                            version.postValue(s.toDouble())
-                        } catch (e: NumberFormatException) {
-                            continue
-                        }
-                    }
-                    Log.i("model_ver", version.toString())
-                }
+                parseWebpage()
 
             }catch (e: IOException) {}
 
+        }
+
+    }
+
+    private fun parseWebpage() {
+
+        val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
+        val element: Elements? = document
+            ?.select("div[class=site-banner site-banner--default]")
+        val title: String? = element?.select("a")?.eq(0)?.text()
+        if (title != null) {
+            val words = title.split(" ")
+            for (s in words) {
+                try {
+                    version.postValue(s.toDouble())
+                } catch (e: NumberFormatException) {
+                    continue
+                }
+            }
+            Log.i("model_ver", version.toString())
         }
 
     }

@@ -18,33 +18,40 @@ class FirebaseModelImpl: FirebaseInterface.FirebaseModel {
     private var dataArray: ArrayList<Data> = ArrayList()
 
     override fun receiveData() {
+
         Log.i("model_header", "!!!!")
         GlobalScope.launch {
 
             try {
 
-                val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
-                val elements: Elements? = document
-                    ?.select("header[class=card__header]")
-                if (elements != null) {
-                    for (i: Int in 0 until elements.size) {
-                        val link: String? = document
-                            .select("h2")
-                            ?.eq(i)
-                            ?.text()
-                        Log.i("model_header", link)
-                        if(link != null) {
-                            dataArray.add(Data(Constants.FIREBASE, link, " "))
-                        }
-                    }
-                    if (dataArray.size != 0) {
-                        data.postValue(dataArray)
-                    }
-                }
+                parseWebpage()
                 Log.i("model_header", "___")
 
             }catch (e: IOException) {}
 
+        }
+
+    }
+
+    private fun parseWebpage () {
+
+        val document: org.jsoup.nodes.Document? = Jsoup.connect(url).get()
+        val elements: Elements? = document
+            ?.select("header[class=card__header]")
+        if (elements != null) {
+            for (i: Int in 0 until elements.size) {
+                val link: String? = document
+                    .select("h2")
+                    ?.eq(i)
+                    ?.text()
+                Log.i("model_header", link)
+                if(link != null) {
+                    dataArray.add(Data(Constants.FIREBASE, link, " "))
+                }
+            }
+            if (dataArray.size != 0) {
+                data.postValue(dataArray)
+            }
         }
 
     }
