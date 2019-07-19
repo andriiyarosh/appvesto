@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppVesto</string>
+    <string name="Flutter">Flutter</string>
+    <string name="Firebase">Firebase</string>
+    <string name="Apple">Apple</string>
+    <string name="update_flutter">Click to get current version of flutter</string>
+    <string name="current_version">0.0</string>
+    <string name="refresh">refresh</string>
+    <string name="header">Header</string>
+    <string name="link">Link</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/nav_flutter"
+            android:icon="@drawable/ic_flutter_svg"
+            android:title="@string/Flutter"/>
+
+    <item
+            android:id="@+id/nav_firebase"
+            android:icon="@drawable/ic_firebase"
+            android:title="@string/Firebase"/>
+
+    <item
+            android:id="@+id/nav_apple"
+            android:icon="@drawable/ic_apple"
+            android:title="@string/Apple"/>
+
+</menu>
