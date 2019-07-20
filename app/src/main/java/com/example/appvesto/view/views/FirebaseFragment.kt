@@ -38,6 +38,7 @@ class FirebaseFragment : Fragment(), AppleFirebaseInterface.AppleFirebaseView {
     override fun initListener() {
 
         fragment_firebase_button.setOnClickListener {
+            fragment_firebase_button.isClickable = false
             updateData()
         }
         fragment_firebase_swipe.setOnRefreshListener {
@@ -53,6 +54,7 @@ class FirebaseFragment : Fragment(), AppleFirebaseInterface.AppleFirebaseView {
                 if (t != null) {
                     adapter.addData(t)
                     stopRefreshLayout()
+                    fragment_firebase_button.isClickable = true
                 }
             })
 

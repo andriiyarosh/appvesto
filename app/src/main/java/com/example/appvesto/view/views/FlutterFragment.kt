@@ -26,15 +26,15 @@ class FlutterFragment : Fragment(), FlutterInterface.FlutterView {
 
     override fun initView() {
         fragment_flutter_button.setOnClickListener {
+            fragment_flutter_button.isClickable = false
             flutterPresenter.receiveLatestVersion()
         }
     }
 
     override fun updateViewData() {
-        val observer = Observer<Double> {
-            version ->
-                fragment_flutter_tv.text = version.toString()
-
+        val observer = Observer<Double> { version ->
+            fragment_flutter_tv.text = version.toString()
+            fragment_flutter_button.isClickable = true
         }
         flutterPresenter.getVersion().observe(this, observer)
 
